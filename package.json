@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Anniecancode/TeamProfileGenerator#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "node-emoji": "^1.11.0"
   }
 }

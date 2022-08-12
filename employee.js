@@ -1,30 +1,26 @@
-const inquirer = require('inquirer')
-
 class Employee {
-    constructor (name, id){
+    constructor (name, id, email){
         this.name = name;
         this.id = id;
+        this.email = email
     }
 
-    getName(title)
-        {
-        title = "team manager's"
-        question[
-            {
-                type: 'input',
-                message: 'What is the ${title} name?',
-                name: 'employeename'
-            }  
-        ]
+    getName(){
+        return this.name
     }   
 
+    getId(){
+        return this.id
+    }
+
+    getEmail(){
+        return this.email
+    }
+
+    getRoll(){
+        return 'Emoployee'
+    }
     
 }
 
-inquirer.prompt(question)
-
-
-module.exports = {
-    Employee,
-    inquirer
-}
+module.exports = {Employee}
