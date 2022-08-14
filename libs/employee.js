@@ -6,22 +6,22 @@ class Employee {
     }
 
     getName(){
-        return console.log(`The name is ${this.name}`)
+        return
     }   
 
     getId(){
-        return console.log(`The nane is ${this.id}`)
+        return
     }
 
     getEmail(){
-        return console.log(`The nane is ${this.email}`)
+        return
     }
 
     getRoll(){
         return 'Employee'
     }
 }
-
+       
 
 module.exports = Employee
    
