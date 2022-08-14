@@ -1,5 +1,6 @@
 const Employee = require("./employee");
 
+// Inherit from parent class
 class Manager extends Employee {
     constructor (name, id, email, number){
         super (name, id, email);
@@ -7,7 +8,7 @@ class Manager extends Employee {
     }
 
     getNumber(){
-        return
+        return this.number
     }
 
     getRole(){

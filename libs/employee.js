@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 class Employee {
     constructor (name, id, email){
         this.name = name;
@@ -6,18 +8,18 @@ class Employee {
     }
 
     getName(){
-        return
+        return this.name
     }   
 
     getId(){
-        return
+        return this.id
     }
 
     getEmail(){
-        return
+        return this.email
     }
 
-    getRoll(){
+    getRole(){
         return 'Employee'
     }
 }

@@ -3,10 +3,10 @@ const fs = require('fs')
 const path = require ('path')
 
 // Include html template
-const dist = path.resolve(__dirname, '../dist')
+const source = path.resolve(__dirname, '../src')
 
 // Render role section to html
-const render = teams =>{
+const render = teams => {
     const renderHTML = []
 
     renderHTML.push(...teams
@@ -22,45 +22,45 @@ const render = teams =>{
     return renderTeams(renderHTML.join(''))
 }
 
-// Render command line answers to html
+// Render html template
 const renderManager = manager => {
-    let template = fs.readFileSync(path.resolve(dist, "manager.html"), "utf8");
-    template = replacePlaceholders(template, "name", manager.getName());
-    template = replacePlaceholders(template, "role", manager.getRole());
-    template = replacePlaceholders(template, "email", manager.getEmail());
-    template = replacePlaceholders(template, "id", manager.getId());
-    template = replacePlaceholders(template, "Number", manager.getNumber());
+    let template = fs.readFileSync(path.resolve(source, "manager.html"), "utf8");
+    template = replaceL (template, "name", manager.getName());
+    template = replaceL (template, "role", manager.getRole());
+    template = replaceL (template, "email", manager.getEmail());
+    template = replaceL (template, "id", manager.getId());
+    template = replaceL (template, "number", manager.getNumber());
     return template;
   };
   
   const renderEngineer = engineer => {
-    let template = fs.readFileSync(path.resolve(dist, "engineer.html"), "utf8");
-    template = replacePlaceholders(template, "name", engineer.getName());
-    template = replacePlaceholders(template, "role", engineer.getRole());
-    template = replacePlaceholders(template, "email", engineer.getEmail());
-    template = replacePlaceholders(template, "id", engineer.getId());
-    template = replacePlaceholders(template, "github", engineer.getGithub());
+    let template = fs.readFileSync(path.resolve(source, "engineer.html"), "utf8");
+    template = replaceL (template, "name", engineer.getName());
+    template = replaceL (template, "role", engineer.getRole());
+    template = replaceL (template, "email", engineer.getEmail());
+    template = replaceL (template, "id", engineer.getId());
+    template = replaceL (template, "github", engineer.getGithub());
     return template;
   };
   
   const renderIntern = intern => {
-    let template = fs.readFileSync(path.resolve(dist, "intern.html"), "utf8");
-    template = replacePlaceholders(template, "name", intern.getName());
-    template = replacePlaceholders(template, "role", intern.getRole());
-    template = replacePlaceholders(template, "email", intern.getEmail());
-    template = replacePlaceholders(template, "id", intern.getId());
-    template = replacePlaceholders(template, "school", intern.getSchool());
+    let template = fs.readFileSync(path.resolve(source, "intern.html"), "utf8");
+    template = replaceL (template, "name", intern.getName());
+    template = replaceL (template, "role", intern.getRole());
+    template = replaceL (template, "email", intern.getEmail());
+    template = replaceL (template, "id", intern.getId());
+    template = replaceL (template, "school", intern.getSchool());
     return template;
   };
   
   const renderTeams = renderHTML => {
-    const template = fs.readFileSync(path.resolve(dist, "team.html"), "utf8");
-    return replacePlaceholders(template, "team", renderHTML);
+    const template = fs.readFileSync(path.resolve(source, "team.html"), "utf8");
+    return replaceL (template, "team", renderHTML);
   };
   
-  const replacePlaceholders = (template, placeholder, value) => {
-    const pattern = new RegExp("{{ " + placeholder + " }}", "gm");
-    return template.replace(pattern, value);
+  const replaceL = (template, layout, value) => {
+    const reg = new RegExp("{{ " + layout + " }}", "gm");
+    return template.replace(reg, value);
   };
   
   

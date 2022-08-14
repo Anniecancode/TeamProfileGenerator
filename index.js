@@ -4,18 +4,20 @@ const fs = require('fs')
 const path = require('path')
 
 // Include class and subclasses
-const Employee = require('./libs/employee')
-const  Manager = require('./libs/manager')
+const Manager = require('./libs/manager')
 const Engineer = require('./libs/engineer');
 const Intern = require('./libs/intern');
 
+// Include html-render layout
 const render = require('./libs/renderHTML')
 
-const renderDir = path.resolve(__dirname, "output");
-const renderPath = path.join(renderDir, "TeamGenerate.html");
+// Set location & name for the html generated
+const folder = path.resolve(__dirname, './dist')
+const file = path.join(folder, 'TeamGenerated.html')
+
 
 const teams = []
-const ids = []
+
 
 welcome = console.log(`Please build your team`);
 
@@ -44,11 +46,9 @@ const getManager = () => {
             name: "managerNumber"
         },
     ])
-    // Command line quesions switch according to user's choice
     .then((data) => {
         const manager = new Manager (data.managerName, data.managerId, data.managerEmail, data.managerNumber)
         teams.push(manager);
-        ids.push(data.managerId);
         teamMember()
     })
 }
@@ -81,7 +81,6 @@ const getEngineer = () => {
     .then((data) => {
         const engineer = new Engineer (data.engineerName, data.engineerId, data.engineerEmail, data.engineerGithub)
         teams.push(engineer);
-        ids.push(data.engineerId);
         teamMember()
     })
 }
@@ -114,11 +113,11 @@ const getIntern = () => {
     .then((data) => {
         const intern = new Intern (data.internName, data.internId, data.internEmail, data.internSchool)
         teams.push(intern);
-        ids.push(data.internId);
         teamMember()
     })
 }
 
+// Command line questions for user to choose roles
 const teamMember = () => {
     inquirer
     .prompt([
@@ -129,9 +128,10 @@ const teamMember = () => {
             name: "teamMember"
         }
     ])
-    .then((data) => {
-        switch (data.teamMember) {
-            case 'Enigineer': 
+    // Command line quesions switch according to user's choice
+    .then((choice) => {
+        switch (choice.teamMember) {
+            case 'Engineer': 
             getEngineer();
             break;
             case 'Intern': 
@@ -144,9 +144,12 @@ const teamMember = () => {
 }
 
 
+// Generate html according to user's answers
 const getTeams = () => {
-    fs.writeFileSync(renderPath, render(teams), "utf-8")
+    fs.writeFile(file, render(teams), (err) => 
+    err? console.error(err): console.log(`success!`))
 }
 
 
 getManager()
+

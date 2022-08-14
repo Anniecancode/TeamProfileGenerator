@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,9 @@
   "homepage": "https://github.com/Anniecancode/TeamProfileGenerator#readme",
   "dependencies": {
     "bootstrap": "^5.2.0",
-    "inquirer": "^8.2.4",
-    "node-emoji": "^1.11.0"
+    "inquirer": "^8.2.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }
